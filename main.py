@@ -2,6 +2,7 @@ import pygame, pymunk, sys
 import pymunk.pygame_util
 from player import Player
 from ground import Walls
+from start_screen import Start
 
 
 pygame.init()
@@ -18,10 +19,14 @@ player.add_to_space(space)
 walls = Walls()
 walls.add_to_space(space)
 
+start = Start()
+
 def get_camera_offset(player_pos, screen_size):
     offset_x = player_pos.x - screen_size[0] // 2
     offset_y = 0  
     return pymunk.Vec2d(offset_x, offset_y)
+
+game_state = False
 
 while True:
     for event in pygame.event.get():
@@ -55,12 +60,18 @@ while True:
         player.torso_right_leg_motor.rate = 10
     else:
         player.torso_right_leg_motor.rate = 0
+    
+    if game_state == False and keys[pygame.K_SPACE]:
+        game_state = True
+    if game_state:
+        offset = get_camera_offset(player.torso_body.position, screen.get_size())
 
-    offset = get_camera_offset(player.torso_body.position, screen.get_size())
-
-    screen.blit(background, (-offset.x-100, 0))
-    walls.draw(screen, offset)
-    player.draw_all(screen, offset)
+        screen.blit(background, (-offset.x-100, 0))
+        walls.draw(screen, offset)
+        player.draw_all(screen, offset)
+    
+    else:
+        start.draw(screen)
 
     # 3300 koniec gry
     
