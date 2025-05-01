@@ -7,6 +7,7 @@ class Walls():
         self.ground_body.position = 0, 700
         self.ground_shape = pymunk.Poly.create_box(self.ground_body, (10000, 60))
         self.ground_shape.friction = 1
+        self.ground_shape.collision_type = 1
 
         self.left_wall_body = pymunk.Body(body_type=pymunk.Body.STATIC)
         self.left_wall_body.position = 0, 0

@@ -9,6 +9,7 @@ class Player():
         self.head_body.position = 640, 15
         self.head_shape.mass = 2
         self.head_shape.friction = 1
+        self.head_shape.collision_type = 2
 
         self.torso_body = pymunk.Body()
         self.torso_body.position = 620, 40
