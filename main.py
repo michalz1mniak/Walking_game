@@ -1,7 +1,7 @@
 import pygame, pymunk, sys
 import pymunk.pygame_util
 from player import Player
-from ground import Ground
+from ground import Walls
 
 
 pygame.init()
@@ -15,8 +15,8 @@ space.gravity = (0,900)
 player = Player()
 player.add_to_space(space)
 
-ground = Ground()
-ground.add_to_space(space)
+walls = Walls()
+walls.add_to_space(space)
 
 def get_camera_offset(player_pos, screen_size):
     offset_x = player_pos.x - screen_size[0] // 2
@@ -59,7 +59,7 @@ while True:
     offset = get_camera_offset(player.torso_body.position, screen.get_size())
 
     screen.blit(background, (-offset.x-100, 0))
-    ground.draw(screen, offset)
+    walls.draw(screen, offset)
     player.draw_all(screen, offset)
 
     # 3300 koniec gry
