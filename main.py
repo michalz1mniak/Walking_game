@@ -23,6 +23,8 @@ screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 background = pygame.image.load('backgrounds/background.png')
 win_background = pygame.image.load('backgrounds/win_background.png')
+font = pygame.font.Font('font/OrbitronFont.ttf',40)
+score = 0
 
 space = pymunk.Space()
 space.gravity = (0,900)
@@ -89,9 +91,13 @@ while True:
 
         if remaining_frames>0:
             remaining_frames-=1
-            print(remaining_frames)
             if remaining_frames == 0:
                 game_state = False
+        score = (player.head_body.position[0] - 640) * 500 / 2660
+        text = font.render(f'Score: {int(round(score,0))}', False, (255,255,255))
+        score_box1 = pygame.draw.rect(screen, (95, 99, 102), (25, 25, 300, 90), border_radius=20)
+        score_box2 = pygame.draw.rect(screen, (255,255,255), (25, 25, 300, 90), border_radius=20, width=5)
+        screen.blit(text, (50,45))
 
                 
     else:
