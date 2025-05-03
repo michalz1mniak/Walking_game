@@ -21,7 +21,8 @@ def collision(a,s,d):
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
-background = pygame.image.load('background.png')
+background = pygame.image.load('backgrounds/background.png')
+win_background = pygame.image.load('backgrounds/win_background.png')
 
 space = pymunk.Space()
 space.gravity = (0,900)
@@ -73,6 +74,8 @@ while True:
     
     if game_state == False and keys[pygame.K_SPACE]:
         game_state = True
+        start = Start()
+
     if game_state:
         offset = get_camera_offset(player.torso_body.position, screen.get_size())
 
@@ -81,6 +84,7 @@ while True:
         player.draw_all(screen, offset)
 
         if player.head_body.position[0]>3300:
+            start.image = win_background
             game_state = False
 
         if remaining_frames>0:
@@ -103,9 +107,6 @@ while True:
 
         walls = Walls()
         walls.add_to_space(space)
-
-    # 3300 koniec gry
-    
 
     clock.tick(60)
     space.step(1/50)  

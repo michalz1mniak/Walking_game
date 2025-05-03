@@ -2,7 +2,7 @@ import pygame
 
 class Start():
     def __init__(self):
-        self.image = pygame.image.load('start_background.png')
+        self.image = pygame.image.load('backgrounds/start_background.png')
         self.color = (95, 99, 102)
 
     def draw(self, screen):
