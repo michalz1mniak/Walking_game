@@ -1,6 +1,7 @@
 # Walking Game
 
 **Walking Game** is a lightweight 2D side-scrolling platformer developed in Python using the Pygame and Pymunk libraries. The player controls a character by independently moving each of their limbs, using physics-based interaction provided by Pymunk.
+The game code in this repository serves as the foundation for a reinforcement learning environment used in a separate project, available [here](https://github.com/michalz1mniak/Walking_game_RL).
 
 ## Requirements
 
